@@ -1,5 +1,7 @@
 # Cross-Site Scripting (XSS) — DOM Rendering Lab
 
+**Start here:** [Technical case study](docs/CASE-STUDY.md) · [Cloud verification](docs/VALIDATION.md) · [Browser demonstration instructions](docs/DEMO-EVIDENCE.md)
+
 **Type:** Local-only, deliberately vulnerable educational page. Never deploy this page publicly.
 
 ## Objective
