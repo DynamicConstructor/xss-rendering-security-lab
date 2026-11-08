@@ -21,6 +21,17 @@ python -m unittest discover -s tests -v
 
 For browser-level verification, open `browser-checks.html` in the same folder. It uses ordinary DOM APIs with no external dependencies and displays PASS/FAIL for three behavioral checks.
 
+## Expanded interactive workbench
+
+Open `advanced.html` locally for three rendering contexts: direct input, fragment text from the local URL, and a locally stored note. Each context compares deliberately unsafe HTML parsing with literal text rendering. All examples use harmless formatting markup; there is no outbound network call. This workbench is **not safe to deploy to a website**.
+
+```bash
+node --test tests/test_logic.mjs
+python -m unittest discover -s tests -v
+```
+
+The six Node tests cover text length limits, fragment decoding, mode labeling, and invalid inputs. Two existing Python checks verify source composition. Complete browser-level checks and save screenshots before making a personal assessment claim.
+
 ## Finding
 
 **Cause:** `innerHTML` parses untrusted strings as markup, which can become XSS when executable HTML/event attributes are allowed into the DOM. **Remediation:** Use `textContent` for plain text and context-appropriate sanitization for intentionally supported HTML. Content Security Policy adds defense in depth but does not replace safe output handling.
@@ -47,10 +58,3 @@ This is an intentionally vulnerable **local example**, not an assessment of an e
 - [ ] Run source-level checks
 - [ ] Explain why safe text rendering works
 - [ ] Add an original test or accessibility improvement
-
-## Portfolio evidence and technical review
-
-- [Cloud validation report](docs/VALIDATION.md) — dated test results and limitations
-- [Technical case study](docs/CASE-STUDY.md) — problem, approach, engineering decisions, and next personal contribution
-
-The cloud run was AI-assisted; it does not establish Alexander's independent authorship. GitHub Actions may be unavailable due to an account-level billing restriction. Follow the local commands in the validation report to reproduce results.
