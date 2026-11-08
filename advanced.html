@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Local XSS Rendering Workbench</title>
+<style>
+body{font:16px system-ui;line-height:1.5;background:#121d30;color:#f2f6ff;max-width:860px;margin:2rem auto;padding:1rem}
+.panel{border:1px solid #62718d;border-radius:12px;padding:1rem;margin:1rem 0}button,input,textarea{font:inherit;padding:.6rem;margin:.3rem}
+textarea{width:95%;min-height:70px}button{cursor:pointer}.output{border:1px dashed #9ab5d5;padding:.7rem;min-height:2rem;white-space:pre-wrap}
+.warning{background:#65431c;padding:1rem;border-radius:9px}small{color:#b9cce4}
+</style>
+<h1>Cross-Site Scripting: Three Local Rendering Scenarios</h1>
+<p class="warning">Deliberately unsafe educational renderers. Only use harmless markup such as &lt;strong&gt;LAB&lt;/strong&gt;. Keep this file local and never publish it as a live service.</p>
+<p>Every scenario compares raw HTML insertion with safe literal-text display.</p>
+
+<section class="panel" data-mode="dom"><h2>1. DOM input</h2>
+<p>The entered string is read directly from a text field.</p><textarea id="dom-input">&lt;strong&gt;LAB&lt;/strong&gt;</textarea>
+<button data-action="dom-unsafe">Unsafe HTML render</button><button data-action="dom-safe">Safe text render</button>
+<div id="dom-output" class="output" aria-live="polite"></div></section>
+
+<section class="panel" data-mode="reflected"><h2>2. URL fragment reflection</h2>
+<p>The fragment in the current page URL acts as an untrusted input source; no request goes to a server.</p>
+<button data-action="reflect-preset">Set example fragment</button><button data-action="reflect-unsafe">Unsafe HTML render</button><button data-action="reflect-safe">Safe text render</button>
+<div id="reflected-output" class="output" aria-live="polite"></div></section>
+
+<section class="panel" data-mode="stored"><h2>3. Local session storage</h2>
+<p>A stored note is retrieved and displayed. Storage stays within this browser session.</p>
+<textarea id="stored-input">&lt;em&gt;Saved lab note&lt;/em&gt;</textarea>
+<button data-action="store">Save session note</button><button data-action="stored-unsafe">Unsafe HTML render</button><button data-action="stored-safe">Safe text render</button>
+<button data-action="clear">Clear lab storage</button>
+<div id="stored-output" class="output" aria-live="polite"></div></section>
+
+<p id="status" role="status"><small>No action taken yet.</small></p>
+<script type="module" src="advanced.js"></script>
+</html>
