@@ -1,5 +1,7 @@
 # Cloud Validation — November 8, 2026
 
+> **Current: 2/2 Python source tests and 8/8 Node tests passed (10 checks total).** Earlier results are historical; browser screenshots still require personal capture.
+
 **Execution:** ChatGPT-managed Linux environment, Python 3.12.14. AI-assisted cloud run.
 
 ## Reproduce automated source checks
