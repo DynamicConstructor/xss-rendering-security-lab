@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>XSS lab browser checks</title>
+<h1>DOM behavior checks</h1>
+<p>Local, harmless browser assertions. No external requests.</p>
+<ol id="results"></ol>
+<script>
+  "use strict";
+  const results = document.getElementById("results");
+  function report(name, pass) {
+    const row = document.createElement("li");
+    row.textContent = (pass ? "PASS: " : "FAIL: ") + name;
+    row.style.color = pass ? "green" : "red";
+    results.append(row);
+  }
+  const input = "<strong>sample</strong>";
+  const unsafe = document.createElement("div");
+  unsafe.innerHTML = input;
+  const safe = document.createElement("div");
+  safe.textContent = input;
+  report("Unsafe assignment parses an element", unsafe.querySelector("strong")?.textContent === "sample");
+  report("Safe assignment creates no child elements", safe.children.length === 0);
+  report("Safe assignment preserves literal text", safe.textContent === input);
+</script>
+</html>

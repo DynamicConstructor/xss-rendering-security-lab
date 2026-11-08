@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>XSS Rendering Lab — Local Only</title>
+  <style>
+    body { font: 16px system-ui, sans-serif; max-width: 720px; margin: 3rem auto; padding: 0 1rem; line-height: 1.5; }
+    textarea { width: 100%; min-height: 90px; box-sizing: border-box; padding: .8rem; }
+    button { margin: 1rem .5rem 1rem 0; padding: .7rem 1rem; cursor: pointer; }
+    #result { border: 2px solid #888; padding: 1rem; min-height: 2rem; }
+    .warning { background: #fff2d0; padding: .7rem; }
+  </style>
+</head>
+<body>
+  <h1>DOM Rendering Security Lab</h1>
+  <p class="warning">Educational vulnerable example. Use harmless markup only. Keep this file local.</p>
+  <label for="input">Untrusted text:</label>
+  <textarea id="input">&lt;strong&gt;INJECTED MARKUP&lt;/strong&gt;</textarea>
+  <div>
+    <button id="unsafe" type="button">Unsafe render (innerHTML)</button>
+    <button id="safe" type="button">Safe render (textContent)</button>
+  </div>
+  <h2>Output</h2>
+  <div id="result" aria-live="polite"></div>
+  <p id="mode" aria-live="polite">Choose a rendering mode to begin.</p>
+  <script src="app.js"></script>
+</body>
+</html>
