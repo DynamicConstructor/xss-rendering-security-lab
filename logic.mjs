@@ -7,7 +7,9 @@ export function normalizeInput(value, maxLength = 500) {
 }
 
 export function fragmentMessage(fragment) {
-  const raw = String(fragment).replace(/^#/, "");
+  if (typeof fragment !== "string") throw new TypeError("Expected a fragment string");
+  if (fragment.length > 4096) throw new RangeError("Fragment too long");
+  const raw = fragment.replace(/^#/, "");
   return normalizeInput(new URLSearchParams(raw).get("message") ?? "");
 }
 
