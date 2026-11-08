@@ -23,9 +23,11 @@ For browser-level verification, open `browser-checks.html` in the same folder. I
 
 ## Expanded interactive workbench
 
-Open `advanced.html` locally for three rendering contexts: direct input, fragment text from the local URL, and a locally stored note. Each context compares deliberately unsafe HTML parsing with literal text rendering. All examples use harmless formatting markup; there is no outbound network call. This workbench is **not safe to deploy to a website**.
+Serve `advanced.html` **only on local loopback** for three rendering contexts: direct input, fragment text from the local URL, and a locally stored note. Each context compares deliberately unsafe HTML parsing with literal text rendering. All examples use harmless formatting markup; there is no outbound network call. Browser module imports can be blocked on `file://` pages, so use the local command below. This workbench is **not safe to deploy to a website**.
 
 ```bash
+python -m http.server 8766 --bind 127.0.0.1
+# In a browser, visit http://127.0.0.1:8766/advanced.html; stop the server with Ctrl+C.
 node --test tests/test_logic.mjs
 python -m unittest discover -s tests -v
 ```
