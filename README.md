@@ -32,7 +32,7 @@ node --test tests/test_logic.mjs
 python -m unittest discover -s tests -v
 ```
 
-The six Node tests cover text length limits, fragment decoding, mode labeling, and invalid inputs. Two existing Python checks verify source composition. Complete browser-level checks and save screenshots before making a personal assessment claim.
+The eight Node tests cover text length limits, fragment decoding, mode labeling, non-string values, and excessively long fragment inputs. Two existing Python checks verify source composition (ten automated checks total). Complete browser-level checks and save screenshots before making a personal assessment claim.
 
 ## Finding
 
