@@ -6,7 +6,7 @@ When untrusted strings are inserted into a page through an HTML-parsing API, mar
 
 ## Approach
 
-Two buttons render the same harmless example string. The intentionally unsafe path assigns to `innerHTML`; the safer plain-text path assigns to `textContent`. A local browser-check page uses ordinary DOM APIs to compare parsing behavior.
+The original two-button page compares `innerHTML` and `textContent`. The expanded loopback-only workbench examines direct DOM input, URL-fragment text, and a session note. A local browser-check page and Node input tests supplement source checks.
 
 ## Architecture
 
@@ -18,8 +18,8 @@ Plain text should use `textContent`. If a product intentionally supports user-au
 
 ## Demonstrated outcome
 
-Two Python source checks passed in cloud verification. Interactive browser behavior remains to be recorded separately by the operator; source tests do not constitute an exploit test.
+Ten checks passed in the latest cloud run (two Python source tests and eight Node helper tests). Automated browser screenshots could not be captured in the current sandbox; those must be performed genuinely by Alexander and do not constitute evidence of live exploitation.
 
 ## Next personal contribution
 
-Alexander can add a local browser automation test, expand accessible status messaging, or document additional safe DOM APIs.
+Alexander can add an independently tested accessible status announcement and document keyboard navigation. Only harmless markup should be used; the vulnerable page is never to be hosted publicly.
